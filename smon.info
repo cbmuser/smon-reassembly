@@ -1,0 +1,127 @@
+#########################################################
+#                                                       #
+#  SMON DA65 Infofile Version 0.1                       #       
+#                                                       #  
+#########################################################
+
+# use: da65 -i thisinfofile.info
+#
+# http://www.cc65.org/doc/da65-2.html#ss2.1
+
+# change values 
+Global {
+
+    OutputName "smon.asm";
+    InputName  "smonpc000.prg";
+    StartAddr  $c000;
+    CPU        "6502";
+#   Comments 3;
+};
+
+Range { Name "LoadAddress"; Start $c000; End $c001; Type ByteTable; };
+Range { Start $c00b; End $c213; Type ByteTable; };
+Range { Start $cfd0; End $cfff; Type ByteTable; };
+
+Label {Name "PRGSTART"; Addr $C214; COMMENT "SMON START"; };
+
+#System-Memory and Zero-Page
+Label {Name "FLAG"; Addr $AA; COMMENT "Universalflag"; };
+Label {Name "ADRCODE"; Addr $AC; COMMENT "SMON Befehlscode"; };
+Label {Name "BEFCODE"; Addr $AD; COMMENT "Befehlscode Ass./Disass."; };
+Label {Name "LOPER"; Addr $AE; COMMENT "Low-Operand für Ass./Disass."; };
+Label {Name "HOPER"; Addr $AF; COMMENT "High-Operand für Ass./Disass."; };
+Label {Name "BEFLEN"; Addr $B6; COMMENT "Befehlslänge Ass./Disass."; };
+Label {Name "PCL"; Addr $FB; COMMENT "SMON-Programmcounter Low-Byte"; };
+Label {Name "PCH"; Addr $FC; COMMENT "SMON-Programmcounter High-Byte"; };
+
+#Extended 
+Label {Name "IRQ_LO"; Addr $0314; COMMENT "Vector: Hardware IRQ Interrupt Address Lo"; };
+Label {Name "IRQ_HI"; Addr $0315; COMMENT "Vector: Hardware IRQ Interrupt Address Hi"; };
+Label {Name "BRK_LO"; Addr $0316; COMMENT "Vector: BRK Lo"; };
+Label {Name "BRK_HI"; Addr $0317; COMMENT "Vector: BRK Hi"; };
+Label {Name "LOADVECT"; Addr $0330; COMMENT "Vector: Kernal LOAD"; };
+Label {Name "SAVEVECT"; Addr $0332; COMMENT "Vector: Kernal SAVE"; };
+
+
+#BASIC ROM
+Label {Name "WARMSTART"; Addr $A474; COMMENT "Restart BASIC"; };
+Label {Name "ADD"; Addr $BC49; COMMENT "Addition"; };
+Label {Name "INTOUT"; Addr $BDCD; COMMENT "Output Positive Integer in A/X"; };
+Label {Name "INTOUT1"; Addr $BDD1; COMMENT "Output Positive Integer in A/X"; };
+Label {Name "STROUT"; Addr $BDDD; COMMENT "Convert FAC#1 to ASCII String"; };
+
+#KERNAL
+Label {Name "EN_TIMER"; Addr $FDDD; COMMENT "Enable Timer"; };
+Label {Name "OPEN"; Addr $FFC0; COMMENT "OPEN Vector"; };
+Label {Name "CLOSE"; Addr $FFC3; COMMENT "CLOSE Vector"; };
+Label {Name "CHKOUT"; Addr $FFC9; COMMENT "Set Output"; };
+Label {Name "CLRCHN"; Addr $FFCC; COMMENT "Restore I/O Vector"; };
+Label {Name "CHRIN"; Addr $FFCF; COMMENT "Input Vector"; };
+Label {Name "CHROUT"; Addr $FFD2; COMMENT "Output Vector"; };
+Label {Name "STOP"; Addr $FFE1; COMMENT "Test STOP Vector"; };
+Label {Name "GETIN"; Addr $FFE4; COMMENT "Vector: Kernal GETIN Routine"; };
+
+#VIC
+Label {Name "VIC_CTRL1"; Addr $D011; COMMENT "VIC Control Register 1"; };
+
+
+#CIA1
+Label {Name "TIMERA_LO"; Addr $DC04; COMMENT "Timer A Low-Byte (Kernal-IRQ, Tape)"; };
+Label {Name "TIMERA_HI"; Addr $DC05; COMMENT "Timer A High-Byte (Kernal-IRQ, Tape)"; };
+Label {Name "CONTROL_REGA"; Addr $DC0E; COMMENT "Control Register A CIA#1"; };
+
+#SMON Jump in
+Label {Name "TICK"; Addr $CADB; COMMENT "???"; };
+Label {Name "BEFDEC"; Addr $C92E; COMMENT "Convert Decimal"; };
+Label {Name "BEFHEX"; Addr $C908; COMMENT "Convert Hexadecimal"; };
+Label {Name "BEFBIN"; Addr $C91C; COMMENT "Convert Binary"; };
+Label {Name "COMMA"; Addr $C6FC; COMMENT "Comma"; };
+Label {Name "COLON"; Addr $C41D; COMMENT "Colon"; };
+Label {Name "SEMIS"; Addr $C3B6; COMMENT "Semis"; };
+Label {Name "ADDSUB"; Addr $C89A; COMMENT "ADDSUB"; };
+Label {Name "ASSEMBLER"; Addr $C6D1; COMMENT "Assembler (A)"; };
+Label {Name "BASICDATA"; Addr $C96C; COMMENT "BASICDATA (B)"; };
+Label {Name "CONVERT"; Addr $CA3D; COMMENT "CONVERT (C)"; };
+Label {Name "DISASS"; Addr $C55D; COMMENT "DISASS (D)"; };
+Label {Name "FIND"; Addr $CB11; COMMENT "FIND (F)"; };
+Label {Name "GO"; Addr $C3E3; COMMENT "GO (G)"; };
+Label {Name "IOSET"; Addr $C844; COMMENT "IO SET (I)"; };
+Label {Name "KONTROLLE"; Addr $CAB7; COMMENT "KONTROLLE (K)"; };
+Label {Name "MEMDUMP"; Addr $C3F9; COMMENT "MEMDUMP (M)"; };
+Label {Name "OCUPPY"; Addr $C9C1; COMMENT "OCUPPY (O)"; };
+Label {Name "SETPRINTER"; Addr $C83D; COMMENT "SETPRINTER (P)"; };
+Label {Name "REGISTER"; Addr $C386; COMMENT "REGISTER (R)"; };
+Label {Name "LOADSAVE"; Addr $C84E; COMMENT "LOADSAVE (L/S)"; };
+Label {Name "TRACE"; Addr $CBF1; COMMENT "TRACE (T)"; };
+Label {Name "VERSCHIEB"; Addr $CA43; COMMENT "VERSCHIEB (V)"; };
+Label {Name "WRITE"; Addr $C9D3; COMMENT "WRITE (W)"; };
+Label {Name "EXIT"; Addr $C36E; COMMENT "EXIT (X)"; };
+Label {Name "DMON"; Addr $CE09; COMMENT "DMON (Z)"; };
+
+
+#SMON intern
+Label {Name "USERINPUT"; Addr $C2CA; COMMENT "GET INPUT AND AWAIT RETURN"; };
+Label {Name "UNKNOWN"; Addr $C2D1; COMMENT "Faulty Userinput"; };
+Label {Name "INTERPRETER"; Addr $C305; COMMENT "Check User-Input"; };
+
+
+#SMON storage
+Label {Name "PCHSAVE"; Addr $02A8; COMMENT "PC hi"; };
+Label {Name "PCLSAVE"; Addr $02A9; COMMENT "PC lo"; };
+Label {Name "SRSAVE"; Addr $02AA; COMMENT "SR"; };
+Label {Name "AKSAVE"; Addr $02AB; COMMENT "A"; };
+Label {Name "XRSAVE"; Addr $02AC; COMMENT "XR"; };
+Label {Name "YSAVE"; Addr $02AD; COMMENT "YR"; };
+Label {Name "SPSAVE"; Addr $02AE; COMMENT "SP"; };
+Label {Name "PRNNO"; Addr $02AF; COMMENT "Printer number"; };
+Label {Name "IONO"; Addr $02B0; COMMENT "Device-Number"; };
+
+#MEM      $02B1  Buffer bis $02B8
+#TRACEBUF $02B8  Buffer für Trace-Modus bis $02BF
+
+
+
+
+
+
+
