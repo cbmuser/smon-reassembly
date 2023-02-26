@@ -1658,7 +1658,7 @@ LCE70:  rol     $AA
         bne     LCE5B
         rts
         lda     #$80
-LCEA1:  bit     $00A9
+        bit     $00A9
         sta     $AB
         jsr     LC264
 LCE90:  jsr     LC351
@@ -1668,7 +1668,7 @@ LCE90:  jsr     LC351
         jsr     CHROUT
         jsr     LC323
         ldy     #$08
-        bit     $00a0   
+LCEA1:  bit     $00a0   
         ldx     #$00
 LCEA6:  lda     ($FB,x)
         jsr     LC44F
@@ -1829,4 +1829,4 @@ LCFDD:  !by   $4D,$52,$CE,$4F,$CE,$B2,$CE,$56
         !by   $CF,$C7,$CE,$5E,$CF,$0B,$CE,$08
         !by   $CE,$85,$CE,$88,$CE
 LCFF2:  !by   $06,$00,$87,$03,$2D,$0C,$5C,$0C
-        !by   $F5,$0C,$A2,$0D,$04
+        !by   $F5,$0C,$A2,$0D,$04,$0e
